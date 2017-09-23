@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>Add user</h1>
+    <form #f="ngForm" novalidate>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="user.name">
+      </div>
+  
+      <div class="form-group">
+        <label>Age</label>
+        <input type="number" class="form-control" name="age" [(ngModel)]="user.age">
+        </div>
+      
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input type="radio" name="gender" [(ngModel)]="user.gender" [value]="gender.value">
+            {{gender.display}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Role</label>
+        <select name="role" class="form-control" [(ngModel)]="user.role">
+          <option *ngFor="let role of roles" [value]="role.value">{{role.display}}</option>
+        </select>
+      </div>
+                                                                                                              
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="isActive" [(ngModel)]="user.isActive">
+            Is Active                                               
+          </label>                                            
+        </div>                                             
+      </div>                                                    
+    <button type="submit" (click)="save(f.value, f.valid)" class="btn btn-default">Submit</button>
+    </form>                     
+                                                                                                   
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Role</th>
+          <th>IsActive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let obj of arrayObject">
+          <td>{{obj.name}}</td>
+          <td>{{obj.age}}</td>
+          <td>{{obj.gender}}</td>
+          <td>{{obj.role}}</td>
+          <td>{{obj.isActive}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!-- <div style="margin-top: 20px" *ngIf="f">
+       <pre>submitted value: <br>{{f.value | json}}</pre>
+    </div> -->
+  </div>
